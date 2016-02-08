@@ -31,7 +31,7 @@
           <li>
             <a href="{$node.link nofilter}">{$node.name}</a>
             <div>
-              {categories nodes=$node.children depth=1}
+              {categories nodes=$node.children depth=$depth+1}
             </div>
           </li>
         {/foreach}
