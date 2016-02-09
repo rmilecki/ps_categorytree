@@ -51,11 +51,6 @@ class BlockCategories extends Module implements WidgetInterface
     {
         if (!parent::install() ||
             !$this->registerHook('leftColumn') ||
-            !$this->registerHook('categoryAddition') ||
-            !$this->registerHook('categoryUpdate') ||
-            !$this->registerHook('categoryDeletion') ||
-            !$this->registerHook('actionAdminMetaControllerUpdate_optionsBefore') ||
-            !$this->registerHook('actionAdminLanguagesControllerStatusBefore') ||
             !Configuration::updateValue('BLOCK_CATEG_MAX_DEPTH', 4) ||
             !Configuration::updateValue('BLOCK_CATEG_ROOT_CATEGORY', 1)) {
             return false;
