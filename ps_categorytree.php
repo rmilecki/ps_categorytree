@@ -30,19 +30,19 @@ if (!defined('_PS_VERSION_')) {
 
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
-class BlockCategories extends Module implements WidgetInterface
+class Ps_CategoryTree extends Module implements WidgetInterface
 {
     public function __construct()
     {
-        $this->name = 'blockcategories';
+        $this->name = 'ps_categorytree';
         $this->tab = 'front_office_features';
-        $this->version = '3.0';
+        $this->version = '1.0.0';
         $this->author = 'PrestaShop';
 
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->l('Categories block');
+        $this->displayName = $this->l('Category tree links');
         $this->description = $this->l('Adds a block featuring product categories.');
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
     }
@@ -288,11 +288,11 @@ class BlockCategories extends Module implements WidgetInterface
     public function renderWidget($hookName = null, array $configuration = [])
     {
         $this->setLastVisitedCategory();
-        if (!$this->isCached('blockcategories.tpl', $this->getCacheId())) {
+        if (!$this->isCached('ps_categorytree.tpl', $this->getCacheId())) {
             $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
         }
 
-        return $this->display(__FILE__, 'blockcategories.tpl', $this->getCacheId());
+        return $this->display(__FILE__, 'ps_categorytree.tpl', $this->getCacheId());
     }
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
