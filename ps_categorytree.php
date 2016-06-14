@@ -42,8 +42,8 @@ class Ps_CategoryTree extends Module implements WidgetInterface
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->l('Category tree links');
-        $this->description = $this->l('Adds a block featuring product categories.');
+        $this->displayName = $this->getTranslator()->trans('Category tree links', array(), 'Modules.CategoryTree');
+        $this->description = $this->getTranslator()->trans('Adds a block featuring product categories.', array(), 'Modules.CategoryTree');
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
     }
 
@@ -75,7 +75,7 @@ class Ps_CategoryTree extends Module implements WidgetInterface
         if (Tools::isSubmit('submitBlockCategories')) {
             $maxDepth = (int)(Tools::getValue('BLOCK_CATEG_MAX_DEPTH'));
             if ($maxDepth < 0) {
-                $output .= $this->displayError($this->l('Maximum depth: Invalid number.'));
+                $output .= $this->displayError($this->getTranslator()->trans('Maximum depth: Invalid number.', array(), 'Admin.Notifications.Error'));
             } else {
                 Configuration::updateValue('BLOCK_CATEG_MAX_DEPTH', (int)$maxDepth);
                 Configuration::updateValue('BLOCK_CATEG_SORT_WAY', Tools::getValue('BLOCK_CATEG_SORT_WAY'));
@@ -162,81 +162,81 @@ class Ps_CategoryTree extends Module implements WidgetInterface
         $fields_form = array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->l('Settings'),
+                    'title' => $this->getTranslator()->trans('Settings', array(), 'Admin.Global'),
                     'icon' => 'icon-cogs'
                 ),
                 'input' => array(
                     array(
                         'type' => 'radio',
-                        'label' => $this->l('Category root'),
+                        'label' => $this->getTranslator()->trans('Category root', array(), 'Modules.CategoryTree'),
                         'name' => 'BLOCK_CATEG_ROOT_CATEGORY',
-                        'hint' => $this->l('Select which category is displayed in the block. The current category is the one the visitor is currently browsing.'),
+                        'hint' => $this->getTranslator()->trans('Select which category is displayed in the block. The current category is the one the visitor is currently browsing.', array(), 'Modules.CategoryTree'),
                         'values' => array(
                             array(
                                 'id' => 'home',
                                 'value' => 0,
-                                'label' => $this->l('Home category')
+                                'label' => $this->getTranslator()->trans('Home category', array(), 'Modules.CategoryTree')
                             ),
                             array(
                                 'id' => 'current',
                                 'value' => 1,
-                                'label' => $this->l('Current category')
+                                'label' => $this->getTranslator()->trans('Current category', array(), 'Modules.CategoryTree')
                             ),
                             array(
                                 'id' => 'parent',
                                 'value' => 2,
-                                'label' => $this->l('Parent category')
+                                'label' => $this->getTranslator()->trans('Parent category', array(), 'Modules.CategoryTree')
                             ),
                             array(
                                 'id' => 'current_parent',
                                 'value' => 3,
-                                'label' => $this->l('Current category, unless it has no subcategories, in which case the parent category of the current category is used')
+                                'label' => $this->getTranslator()->trans('Current category, unless it has no subcategories, in which case the parent category of the current category is used', array(), 'Modules.CategoryTree')
                             ),
                         )
                     ),
                     array(
                         'type' => 'text',
-                        'label' => $this->l('Maximum depth'),
+                        'label' => $this->getTranslator()->trans('Maximum depth', array(), 'Modules.CategoryTree'),
                         'name' => 'BLOCK_CATEG_MAX_DEPTH',
-                        'desc' => $this->l('Set the maximum depth of category sublevels displayed in this block (0 = infinite).'),
+                        'desc' => $this->getTranslator()->trans('Set the maximum depth of category sublevels displayed in this block (0 = infinite).', array(), 'Modules.CategoryTree'),
                     ),
                     array(
                         'type' => 'radio',
-                        'label' => $this->l('Sort'),
+                        'label' => $this->getTranslator()->trans('Sort', array(), 'Admin.Actions'),
                         'name' => 'BLOCK_CATEG_SORT',
                         'values' => array(
                             array(
                                 'id' => 'name',
                                 'value' => 1,
-                                'label' => $this->l('By name')
+                                'label' => $this->getTranslator()->trans('By name', array(), 'Admin.Global')
                             ),
                             array(
                                 'id' => 'position',
                                 'value' => 0,
-                                'label' => $this->l('By position')
+                                'label' => $this->getTranslator()->trans('By position', array(), 'Admin.Global')
                             ),
                         )
                     ),
                     array(
                         'type' => 'radio',
-                        'label' => $this->l('Sort order'),
+                        'label' => $this->getTranslator()->trans('Sort order', array(), 'Admin.Actions'),
                         'name' => 'BLOCK_CATEG_SORT_WAY',
                         'values' => array(
                             array(
                                 'id' => 'name',
                                 'value' => 1,
-                                'label' => $this->l('Descending')
+                                'label' => $this->getTranslator()->trans('Descending', array(), 'Admin.Global')
                             ),
                             array(
                                 'id' => 'position',
                                 'value' => 0,
-                                'label' => $this->l('Ascending')
+                                'label' => $this->getTranslator()->trans('Ascending', array(), 'Admin.Global')
                             ),
                         )
                     ),
                 ),
                 'submit' => array(
-                    'title' => $this->l('Save'),
+                    'title' => $this->getTranslator()->trans('Save', array(), 'Admin.Actions'),
                 )
             ),
         );
