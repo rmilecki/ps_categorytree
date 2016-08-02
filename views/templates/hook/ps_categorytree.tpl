@@ -29,7 +29,7 @@
       <ul>
         {foreach from=$nodes item=node}
           <li>
-            <a href="{$node.link nofilter}">{$node.name}</a>
+            <a href="{$node.link}">{$node.name}</a>
             <div>
               {categories nodes=$node.children depth=$depth+1}
             </div>
