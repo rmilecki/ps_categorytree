@@ -266,33 +266,24 @@ class Ps_CategoryTree extends Module implements WidgetInterface
 
     public function setLastVisitedCategory()
     {
-        $cache_id = 'blockcategories::setLastVisitedCategory';
-
-        if (!Cache::isStored($cache_id)) {
-            if (method_exists($this->context->controller, 'getCategory') && ($category = $this->context->controller->getCategory())) {
-                $this->context->cookie->last_visited_category = $category->id;
-            } elseif (method_exists($this->context->controller, 'getProduct') && ($product = $this->context->controller->getProduct())) {
-                if (!isset($this->context->cookie->last_visited_category)
-                    || !Product::idIsOnCategoryId($product->id, array(array('id_category' => $this->context->cookie->last_visited_category)))
-                    || !Category::inShopStatic($this->context->cookie->last_visited_category, $this->context->shop)
-                ) {
-                    $this->context->cookie->last_visited_category = (int)$product->id_category_default;
-                }
+        if (method_exists($this->context->controller, 'getCategory') && ($category = $this->context->controller->getCategory())) {
+            $this->context->cookie->last_visited_category = $category->id;
+        } elseif (method_exists($this->context->controller, 'getProduct') && ($product = $this->context->controller->getProduct())) {
+            if (!isset($this->context->cookie->last_visited_category)
+                || !Product::idIsOnCategoryId($product->id, array(array('id_category' => $this->context->cookie->last_visited_category)))
+                || !Category::inShopStatic($this->context->cookie->last_visited_category, $this->context->shop)
+            ) {
+                $this->context->cookie->last_visited_category = (int)$product->id_category_default;
             }
-            Cache::store($cache_id, $this->context->cookie->last_visited_category);
         }
-
-        return Cache::retrieve($cache_id);
     }
 
     public function renderWidget($hookName = null, array $configuration = [])
     {
         $this->setLastVisitedCategory();
-        if (!$this->isCached('ps_categorytree.tpl', $this->getCacheId())) {
-            $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
-        }
+        $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
 
-        return $this->display(__FILE__, 'ps_categorytree.tpl', $this->getCacheId());
+        return $this->display(__FILE__, 'ps_categorytree.tpl');
     }
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
