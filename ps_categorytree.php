@@ -44,7 +44,7 @@ class Ps_CategoryTree extends Module implements WidgetInterface
 
         $this->displayName = $this->getTranslator()->trans('Category tree links', array(), 'Modules.CategoryTree');
         $this->description = $this->getTranslator()->trans('Adds a block featuring product categories.', array(), 'Modules.CategoryTree');
-        $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
+        $this->ps_versions_compliancy = array('min' => '1.7.0.0', 'max' => _PS_VERSION_);
     }
 
     public function install()
