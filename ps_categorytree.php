@@ -280,7 +280,7 @@ class Ps_CategoryTree extends Module implements WidgetInterface
         $this->setLastVisitedCategory();
         $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
 
-        return $this->display(__FILE__, 'ps_categorytree.tpl');
+        return $this->fetch('module:ps_categorytree/views/templates/hook/ps_categorytree.tpl');
     }
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
